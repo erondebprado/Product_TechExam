@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">E-Commerce App</string>
+    <string name="products">Products</string>
+    <string name="loading">Loading...</string>
+    <string name="productid">productId</string>
+    <string name="detail">Detail</string>
+</resources>
