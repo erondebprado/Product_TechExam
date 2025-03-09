@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_nav"
+    app:startDestination="@id/productListFragment">
+
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.davemac.product_techexam.View.Fragment.ProductListFragment"
+        android:label="fragment_productlist"
+        tools:layout="@layout/fragment_productlist" >
+        <action
+            android:id="@+id/action_productListFragment_to_productItemFragment"
+            app:destination="@id/productItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productItemFragment"
+        android:name="com.davemac.product_techexam.View.Fragment.ProductItemFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_productItemFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+    </fragment>
+
+
+</navigation>
