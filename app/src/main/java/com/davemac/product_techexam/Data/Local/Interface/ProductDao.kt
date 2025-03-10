@@ -16,4 +16,7 @@ interface ProductDao {
 
     @Query("SELECT * FROM tbl_products")
     fun getAllProducts(): Flow<List<Product>>
+
+    @Query("SELECT * FROM tbl_products")
+    fun getProducts():  List<Product>
 }
