@@ -1,3 +1,7 @@
 package com.davemac.product_techexam.Model.Categories
 
-class CategoriesModel : ArrayList<CategoriesModelItem>()
+data class CategoriesModel(
+    val name: String,
+    val slug: String,
+    val url: String
+)

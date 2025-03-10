@@ -25,10 +25,10 @@ class ProductAdapter(private val context: Context): RecyclerView.Adapter<Product
                textViewProductName.text = item.title
                textViewProductDescription.text = item.description
                textViewProductRating.text = item.rating.toString()
-//                textViewLocation.text = item.location.name
-                Glide
+               textViewProductPrice.text = item.price.toString() + " PHP"
+               Glide
                     .with(context)
-                    .load(item.images[0])
+                    .load(item.thumbnail)
                     .centerCrop()
                     .placeholder(R.mipmap.ic_launcher)
                     .into(imgViewProductImage)
@@ -38,7 +38,6 @@ class ProductAdapter(private val context: Context): RecyclerView.Adapter<Product
    }
 
     fun onAddItems(item: Product){
-        Log.d(TAG, "Adapter items " + item.title)
         productItem.add(item)
         notifyDataSetChanged()
     }
@@ -49,7 +48,6 @@ class ProductAdapter(private val context: Context): RecyclerView.Adapter<Product
     }
 
     override fun getItemCount(): Int {
-        Log.d(TAG, "Get item count " + productItem.size)
         return productItem.size
     }
 

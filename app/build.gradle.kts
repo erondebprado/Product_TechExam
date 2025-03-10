@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
     val coroutines_core_version = "1.10.1"
     val coroutines_adr_version  = "1.3.9"
     val shimmer_version = "0.5.0"
+    val room_version = "2.6.1"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -82,4 +84,9 @@ dependencies {
     implementation("com.google.code.gson:gson:$gson_version")
 
     implementation("com.squareup.retrofit2:converter-gson:$gsonConverter_version")
+
+    //Room
+    implementation("androidx.room:room-runtime:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
 }

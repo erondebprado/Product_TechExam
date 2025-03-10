@@ -1,25 +1,17 @@
 package com.davemac.product_techexam.Model.Products
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "tbl_products")
 data class Product(
-    val availabilityStatus: String,
-    val brand: String,
-    val category: String,
-    val description: String,
-    val dimensions: Dimensions,
-    val discountPercentage: Double,
-    val id: Int,
-    val images: List<String>,
-    val minimumOrderQuantity: Int,
-    val price: Double,
-    val rating: Double,
-    val returnPolicy: String,
-    val reviews: List<Review>,
-    val shippingInformation: String,
-    val sku: String,
-    val stock: Int,
-    val tags: List<String>,
-    val thumbnail: String,
-    val title: String,
-    val warrantyInformation: String,
-    val weight: Int
+
+    @PrimaryKey(autoGenerate = false)
+    val id: Int?=0,
+    val description: String? = "",
+    val price: Double?=0.0,
+    val rating: Double?=0.0,
+    val thumbnail: String?= null,
+    val title: String?= null,
 )

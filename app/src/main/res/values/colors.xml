@@ -10,4 +10,5 @@
     <color name="description">#7C7C7C</color>
     <color name="shimmer_color">#CECFD2</color>
     <color name="cardview">#AFEDEDED</color>
+    <color name="price">#AFCC2020</color>
 </resources>

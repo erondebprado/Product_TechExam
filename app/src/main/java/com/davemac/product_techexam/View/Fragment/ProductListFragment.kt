@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.davemac.product_techexam.Factory.ProductFactory
 import com.davemac.product_techexam.R
 import com.davemac.product_techexam.Repository.ProductRepository
-import com.davemac.product_techexam.Utils.Constant.LIMIT
 import com.davemac.product_techexam.Utils.Constant.TAG
 import com.davemac.product_techexam.Utils.DataStatus
 import com.davemac.product_techexam.Utils.RecyclerViewLoadMoreScroll
@@ -25,6 +24,7 @@ import com.davemac.product_techexam.View.Adapter.ProductAdapter
 import com.davemac.product_techexam.ViewModel.ProductViewModel
 import com.davemac.product_techexam.databinding.FragmentProductlistBinding
 import kotlinx.coroutines.launch
+
 
 class ProductListFragment : Fragment(){
 
@@ -46,6 +46,8 @@ class ProductListFragment : Fragment(){
 
     private var limit: Int = 0
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,8 +63,8 @@ class ProductListFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val productRepository = ProductRepository()
-        val viewModelFactory  = ProductFactory(productRepository)
+        val productRepository = ProductRepository(requireContext())
+        val viewModelFactory  = ProductFactory(productRepository, requireActivity())
 
         productsViewModel = ViewModelProvider(this, viewModelFactory).get(ProductViewModel::class.java)
 
@@ -89,6 +91,7 @@ class ProductListFragment : Fragment(){
         lifecycleScope.launch {
             binding.apply {
                 productsViewModel.loadProducts(skip)
+
                 productsViewModel.productList.observe(viewLifecycleOwner){
                     when(it.status){
                         DataStatus.Status.LOADING -> {
@@ -99,11 +102,10 @@ class ProductListFragment : Fragment(){
                             limit = it.data?.limit ?: 0
 
                             Thread.sleep(1000L)
+
                             _binding!!.shimmerEffect.isVisible(false, _binding!!.rvProductsList)
                             _binding!!.shimmerEffect.stopShimmer()
-                            it.data?.products?.forEach { it1 ->
-                               adapter!!.onAddItems(it1)
-                            }
+
                         }
                         DataStatus.Status.ERROR -> {
                             Thread.sleep(1000L)
@@ -111,6 +113,12 @@ class ProductListFragment : Fragment(){
                             _binding!!.shimmerEffect.stopShimmer()
                             Toast.makeText(requireActivity(), it.message, Toast.LENGTH_SHORT).show()
                         }
+                    }
+                }
+
+                productsViewModel.cacheProducts.observe(viewLifecycleOwner){
+                    it.forEach { prod ->
+                        adapter!!.onAddItems(prod)
                     }
                 }
             }

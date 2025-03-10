@@ -30,16 +30,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/textViewTitleDetail">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
 
-                <include layout="@layout/item_product_item_view_shimmer"/>
+           <include layout="@layout/item_product_item_view_shimmer" />
 
-            </LinearLayout>
+       </LinearLayout>
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+   </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 
@@ -85,26 +85,95 @@
                 android:layout_marginStart="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_20dp"
                 android:textColor="@color/black"
-
                 android:textSize="@dimen/_18sp"
                 android:textStyle="bold"
                 />
 
             <TextView
-                android:id="@+id/textViewProductRating"
+                android:id="@+id/textViewProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewProductName"
+                app:layout_constraintTop_toBottomOf="@+id/imgViewProductImage"
                 android:layout_marginStart="@dimen/_10dp"
-                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_20dp"
+                android:textColor="@color/price"
                 android:textSize="@dimen/_18sp"
                 android:textStyle="bold"
                 />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewProductRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewProductName"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18sp"
+                    android:textStyle="bold"
+                    />
+
+                <ImageView
+                    android:src="@drawable/ic_rating"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginStart="@dimen/_5dp"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
         </LinearLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerEffectCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            android:layout_marginTop="@dimen/_350dp"
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/item_category_view_shimmer"/>
+                <include layout="@layout/item_category_view_shimmer"/>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            />
+
+
 
 
   <TextView
